@@ -53,8 +53,14 @@ namespace ToDoList.Controllers
     {
       var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
       ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+      ViewBag.Completed = new SelectList(_db.Items, "Completed");
+      // ViewBag.CategoryId = new SelectList(_db.Categories, "Completed", "Completed");
       return View(thisItem);
     }
+
+
+
+// _db.Entry(item).State = EntityState.Modified;
 
     [HttpPost]
     public ActionResult Edit(Item item, int CategoryId)
@@ -110,12 +116,12 @@ namespace ToDoList.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Completed(int id)
-    {
-      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-      ViewBag.ItemId = new SelectList(_db.Items, "ItemId", "Name");
-      return View(thisItem);
-    }
+    // public ActionResult Completed(int id)
+    // {
+    //   var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
+    //   ViewBag.ItemId = new SelectList(_db.Items, "ItemId", "Name");
+    //   return View(thisItem);
+    // }
 
     // [HttpPost]
     // public ActionResult Completed(Item item, int CategoryId)
@@ -129,12 +135,18 @@ namespace ToDoList.Controllers
     //   return RedirectToAction("Details");
     // }
 
-    [HttpPost]
-    public ActionResult CompletedPost(Item item)
-    {
-      _db.Entry(item).State = EntityState.Modified;
-      _db.SaveChanges();
-      return RedirectToAction("Details");
-    }
+//     public ActionResult Completed(int id)
+// {
+//     var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
+//     return View(thisItem);
+// }
+
+//     [HttpPost]
+//     public ActionResult Completed(Item item)
+//     {
+//       _db.Entry(item).State = EntityState.Modified;
+//       _db.SaveChanges();
+//       return RedirectToAction("Details");
+//     }
   }
 }

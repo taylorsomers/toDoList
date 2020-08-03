@@ -4,17 +4,33 @@
 }
 
 @model ToDoList.Models.Item
+@using System;
 
 <h2>Edit</h2>
 
 <h4>Edit this task: @Html.DisplayFor(model => model.Description)</h4>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Items", FormMethod.Post))
 {
     @Html.HiddenFor(model => model.ItemId)
 
     @Html.LabelFor(model => model.Description)
     @Html.EditorFor(model => model.Description)
+
+    @Html.DisplayNameFor(model => model.Completed)
+    @* @Html.DropDownList("Completed") *@
+    @Html.DropDownList(
+    "Item Completed",
+    new SelectList(
+      new[]
+      {
+        new { Value = "true", Text = "Yes" },
+        new { Value = "false", Text = "No" }
+      },
+      "Value",
+      "Text",
+      Model
+    ))
 
     @Html.Label("Select category")
     @Html.DropDownList("CategoryId")

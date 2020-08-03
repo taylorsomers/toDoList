@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ToDoList.Models
 {
@@ -12,6 +13,7 @@ namespace ToDoList.Models
 
         public int ItemId { get; set; }
         public string Description { get; set; }
+        [DisplayName("Task completed?")]
         public bool Completed { get; set; }
         
         public ICollection<CategoryItem> Categories { get;}

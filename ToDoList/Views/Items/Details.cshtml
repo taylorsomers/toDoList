@@ -19,10 +19,10 @@ else
   @foreach(var join in Model.Categories)
   {
     <li>@join.Category.Name</li>
-    @using (Html.BeginForm("DeleteCategory", "Items"))
+    @using (Html.BeginForm("DeleteCategory", "Items", FormMethod.Post))
     {
       @Html.Hidden("joinId", @join.CategoryItemId)
-      <p>@Html.ActionLink("Mark as completed", "Completed", new { id = Model.ItemId })</p>
+      <p>@Html.ActionLink("Mark as completed", "Edit", new { id = Model.ItemId })</p>
       <input type="submit" value="Delete" />
     }
   }
