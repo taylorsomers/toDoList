@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -116,16 +117,24 @@ namespace ToDoList.Controllers
       return View(thisItem);
     }
 
+    // [HttpPost]
+    // public ActionResult Completed(Item item, int CategoryId)
+    // {
+    //   if (CategoryId != 0)
+    //   {
+    //     _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
+    //   }
+    //   _db.Entry(item).State = EntityState.Modified;
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Details");
+    // }
+
     [HttpPost]
-    public ActionResult Completed(Item item, int CategoryId)
+    public ActionResult CompletedPost(Item item)
     {
-      if (CategoryId != 0)
-      {
-        _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
-      }
       _db.Entry(item).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details");
     }
   }
 }

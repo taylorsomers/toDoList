@@ -22,7 +22,7 @@ else
     @using (Html.BeginForm("DeleteCategory", "Items"))
     {
       @Html.Hidden("joinId", @join.CategoryItemId)
-      <p>@Html.ActionLink("Mark as completed", "Completed")</p>
+      <p>@Html.ActionLink("Mark as completed", "Completed", new { id = Model.ItemId })</p>
       <input type="submit" value="Delete" />
     }
   }
