@@ -19,7 +19,8 @@
 
     @Html.DisplayNameFor(model => model.Completed)
     @* @Html.DropDownList("Completed") *@
-    @Html.DropDownList(
+    @Html.DropDownListFor(model => model.Completed)
+    @* @Html.DropDownList(
     "Item Completed",
     new SelectList(
       new[]
@@ -30,7 +31,7 @@
       "Value",
       "Text",
       Model
-    ))
+    )) *@
 
     @Html.Label("Select category")
     @Html.DropDownList("CategoryId")
