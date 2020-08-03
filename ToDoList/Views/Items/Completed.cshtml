@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@model ToDoList.Models.Item
+  
+  <h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
+  
+  @using (Html.BeginForm())
+  {
+    @Html.Label("Task Completed?")
+    @Html.DropDownList(
+    "Item Completed",
+    new SelectList(
+      new[]
+      {
+        new { Value = true, Text = "Yes" },
+        new { Value = false, Text = "No" }
+      },
+      "Value",
+      "Text",
+      Model
+    )
+  )
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Back to home", "Index", "Home")</p>
+
