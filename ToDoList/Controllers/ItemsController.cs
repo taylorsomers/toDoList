@@ -66,12 +66,19 @@ namespace ToDoList.Controllers
     [HttpPost]
     public ActionResult Edit(Item item, int CategoryId)
     {
-      // if ((CategoryId != 0) && (!ToDoListContext.Contains(CategoryId)))
+    //   (repository.Get(x => x.Major == newVersion.Major && 
+    // x.Minor == newVersion.Minor && x.Build == newVersion.Build)
+    // .Count() > 0)
+      
+      if ((CategoryId != 0));
       {
         _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
       }
       _db.Entry(item).State = EntityState.Modified;
-      _db.SaveChanges();
+      if(!_db.CategoryItem.Get(x => x.CategoryId == CategoryId) && (!_db.CategoryItem.Get(x => x.ItemId)))
+      {
+        _db.SaveChanges();
+      }
       return RedirectToAction("Index");
     }
 
