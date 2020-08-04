@@ -70,7 +70,7 @@ namespace ToDoList.Controllers
     // x.Minor == newVersion.Minor && x.Build == newVersion.Build)
     // .Count() > 0)
       
-      if ((CategoryId != 0));
+      if ((CategoryId != 0)) ;
       {
         _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
       }
