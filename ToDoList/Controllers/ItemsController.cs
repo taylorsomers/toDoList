@@ -59,28 +59,40 @@ namespace ToDoList.Controllers
       return View(thisItem);
     }
 
+  [HttpPost]
+  public ActionResult Edit(Item item, int CategoryId)
+  {
+    var query =
+      from categoryItem in _db.CategoryItem
+      where categoryItem.CategoryId == CategoryId
+      select categoryItem;
+    foreach (CategoryItem categoryItem in query)
+    {
+      categoryItem.CategoryId = CategoryId;
+    }
+    _db.SaveChanges();
+    return RedirectToAction("Details");
+  }
+
 
 
 // _db.Entry(item).State = EntityState.Modified;
 
-    [HttpPost]
-    public ActionResult Edit(Item item, int CategoryId)
-    {
-    //   (repository.Get(x => x.Major == newVersion.Major && 
-    // x.Minor == newVersion.Minor && x.Build == newVersion.Build)
-    // .Count() > 0)
-      
-      if ((CategoryId != 0)) ;
-      {
-        _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
-      }
-      _db.Entry(item).State = EntityState.Modified;
-      if(!_db.CategoryItem.Get(x => x.CategoryId == CategoryId) && (!_db.CategoryItem.Get(x => x.ItemId)))
-      {
-        _db.SaveChanges();
-      }
-      return RedirectToAction("Index");
-    }
+    // [HttpPost]
+    // public ActionResult Edit(Item item, int CategoryId)
+    // {
+    //   =
+    //   if ((CategoryId != 0))
+    //   {
+    //     _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
+    //   }
+    //   _db.Entry(item).State = EntityState.Modified;
+    //   if(!_db.CategoryItem.Get(x => x.CategoryId == CategoryId) && (!_db.CategoryItem.Get(x => x.ItemId)))
+    //   {
+    //     _db.SaveChanges();
+    //   }
+    //   return RedirectToAction("Index");
+    // }
 
     public ActionResult AddCategory(int id)
     {
