@@ -66,7 +66,7 @@ namespace ToDoList.Controllers
     [HttpPost]
     public ActionResult Edit(Item item, int CategoryId)
     {
-      if ((CategoryId != 0) && (!ToDoListContext.Contains(CategoryId)))
+      // if ((CategoryId != 0) && (!ToDoListContext.Contains(CategoryId)))
       {
         _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
       }
